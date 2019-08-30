@@ -1,0 +1,35 @@
+{
+    "name": "8fold/php-schema",
+    "description": "??",
+    "version": "0.0.1",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Josh Bruce",
+            "email": "josh@8fold.pro"
+        }
+    ],
+    "require": {
+        "php": ">=7.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.4",
+        "phpunit/phpunit": "7.5.6",
+        "phpunit/php-code-coverage": "^6.0.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Eightfold\\Schema\\": "./src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Eightfold\\Schema\\Tests\\": "./tests/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "minimum-stability": "dev"
+}
