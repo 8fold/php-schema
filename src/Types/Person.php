@@ -2,18 +2,17 @@
 
 namespace Eightfold\Schema\Types;
 
-class Person
+use Eightfold\Schema\Types\Thing;
+
+use Eightfold\Schema\Properties\Thing as ThingTrait;
+use Eightfold\Schema\Properties\Person as PersonTrait;
+
+class Person extends Thing
 {
-    private $properties = [];
+    use ThingTrait, PersonTrait;
 
-    public function setGivenName(string $name): Person
+    public function properties(): array
     {
-        $this->properties['givenName'] = $name;
-        return $this;
-    }
-
-    public function givenName(): string
-    {
-        return $this->properties['givenName'];
+        return array_merge($this->thingProperties(), $this->personProperties());
     }
 }

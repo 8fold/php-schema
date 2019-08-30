@@ -4,8 +4,48 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "10d557b7443dadae104d35e7137bb71d",
-    "packages": [],
+    "content-hash": "6c47af05e38efa498eccd90ec53d2710",
+    "packages": [
+        {
+            "name": "8fold/php-shoop",
+            "version": "0.0.1",
+            "dist": {
+                "type": "path",
+                "url": "../php-shoop",
+                "reference": "b8a5f7903a3156b2f1d2c8b5b2e9fb849e1f36e7",
+                "shasum": null
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.4",
+                "phpunit/php-code-coverage": "^6.0.7",
+                "phpunit/phpunit": "7.5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Eightfold\\Shoop\\": "./src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Eightfold\\Shoop\\Tests\\": "./tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Josh Bruce",
+                    "email": "josh@8fold.pro"
+                }
+            ],
+            "description": "??"
+        }
+    ],
     "packages-dev": [
         {
             "name": "doctrine/instantiator",

@@ -24,8 +24,26 @@ class PersonTest extends TestCase
     {
         $expected = "Josh";
         $person = Schema::person()
-            ->setGivenName($expected);
+            ->givenName($expected);
         $name = $person->givenName();
         $this->assertEquals($expected, $name);
+    }
+
+    public function testPersonHasEmail()
+    {
+        $expected = "josh@8fold.pro";
+        $person = Schema::person()
+            ->email($expected);
+        $email = $person->email();
+        $this->assertEquals($expected, $email);
+    }
+
+    public function testPersonHasImage()
+    {
+        $expected = "somewhere";
+        $person = Schema::person()
+            ->image($expected);
+        $image = $person->image();
+        $this->assertEquals($expected, $image);
     }
 }
