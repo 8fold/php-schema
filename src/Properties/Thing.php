@@ -10,7 +10,8 @@ trait Thing
             'description',
             'identifier',
             'image',
-            'name'
+            'name',
+            'url'
         ];
     }
 }

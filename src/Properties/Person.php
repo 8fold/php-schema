@@ -10,7 +10,8 @@ trait Person
             'givenName',
             'familyName',
             'email',
-            'sameAs'
+            'sameAs',
+            'contactPoint'
         ];
     }
 }

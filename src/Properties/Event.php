@@ -12,7 +12,9 @@ trait Event
             'audience',
             'inLanguage',
             'location',
-            'subEvent'
+            'subEvent',
+            'startDate',
+            'endDate'
         ];
     }
 }

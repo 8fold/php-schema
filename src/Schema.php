@@ -2,20 +2,27 @@
 
 namespace Eightfold\Schema;
 
+use Eightfold\Json\Read;
+
 use Eightfold\Schema\Types\{
     Person,
-    Event
+    Event,
+    ContactPoint
 };
 
 class Schema
 {
-    static public function person()
+    static public function fromPath(string $path)
     {
-        return new Person();
+        $jsonLD = file_get_contents($path);
+        return static::fromString($jsonLD);
     }
 
-    static public function event()
+    static public function fromString(string $jsonLD)
     {
-        return new Event();
+        $type = Read::fromString($jsonLD)->getKey("@type")->fetch();
+        $type = 'Eightfold\Schema\Types\\'. $type;
+
+        return new $type($jsonLD);
     }
 }

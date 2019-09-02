@@ -1,0 +1,29 @@
+{
+	"@context": "http://schema.org",
+	"@type": "Person",
+	"givenName": "Josh",
+	"familyName": "Bruce",
+	"image": "",
+	"contactPoint": {
+		"@type": "ContactPoint",
+		"contactType": "General inquiry",
+		"email": "josh@8fold.pro"
+	},
+	"sameAs": [
+		{
+			"url": "https://twitter.com/amidknight"
+		},
+		{
+			"url": "https://linkedin.com/in/joshuabruce"
+		},
+		{
+			"url": "https://github.com/joshbruce"
+		},
+		{
+			"url": "https://medium.com/@amidknight"
+		},
+		{
+			"url": "https://leanpub.com/u/joshuabruce"
+		}
+	]
+}

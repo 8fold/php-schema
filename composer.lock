@@ -4,8 +4,60 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "6c47af05e38efa498eccd90ec53d2710",
+    "content-hash": "dc2727c823fb2cad24820d635e04ac82",
     "packages": [
+        {
+            "name": "8fold/php-json",
+            "version": "0.0.1",
+            "dist": {
+                "type": "path",
+                "url": "../php-json",
+                "reference": "cf0bd5d8e0115b3fdba495ed4d5be90c161fc3f3",
+                "shasum": null
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.4",
+                "phpunit/php-code-coverage": "^6.0.7",
+                "phpunit/phpunit": "7.5.6"
+            },
+            "type": "library",
+            "extra": {
+                "8fold": {
+                    "writer": "Apollonius",
+                    "reader": "Jason",
+                    "tests": [
+                        "Can instantiate",
+                        "Can use getKey",
+                        "Can use key name function",
+                        "Can use fetch with key name",
+                        "Can go deep"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Eightfold\\Json\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Eightfold\\Json\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Josh Bruce",
+                    "email": "josh@8fold.pro"
+                }
+            ],
+            "description": "Handling JSON."
+        },
         {
             "name": "8fold/php-shoop",
             "version": "0.0.1",
