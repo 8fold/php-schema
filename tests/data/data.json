@@ -9,6 +9,12 @@
 		"contactType": "General inquiry",
 		"email": "josh@8fold.pro"
 	},
+	"offers": [
+		{
+			"@type": "Offer",
+			"category": "example"
+		}
+	],
 	"sameAs": [
 		{
 			"url": "https://twitter.com/amidknight"

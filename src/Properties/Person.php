@@ -11,7 +11,8 @@ trait Person
             'familyName',
             'email',
             'sameAs',
-            'contactPoint'
+            'contactPoint',
+            'offers'
         ];
     }
 }
