@@ -14,13 +14,13 @@ use Eightfold\Schema\Properties\SoftwareSourceCode as SoftwareSourceCodeTrait;
 
 class SoftwareSourceCode extends CreativeWork
 {
-    use ThingTrait, CreativeWorkTrait, SoftwareSourceCodeTrait;
+    use CreativeWorkTrait, SoftwareSourceCodeTrait;
 
     public function properties(): array
     {
         return array_merge(
             $this->thingProperties(),
-            $this->CreativeWorkProperties(),
+            $this->creativeWorkProperties(),
             $this->softwareSourceCodeProperties()
         );
     }

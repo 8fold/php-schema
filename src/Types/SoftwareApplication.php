@@ -14,7 +14,7 @@ use Eightfold\Schema\Properties\SoftwareApplication as SoftwareApplicationTrait;
 
 class SoftwareApplication extends CreativeWork
 {
-    use ThingTrait, CreativeWorkTrait, SoftwareApplicationTrait;
+    use CreativeWorkTrait, SoftwareApplicationTrait;
 
     public function properties(): array
     {

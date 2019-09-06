@@ -18,6 +18,12 @@ class Schema
         return static::fromString($jsonLD);
     }
 
+    static public function fromObject(\stdClass $object)
+    {
+        $jsonLD = json_encode($object);
+        return static::fromString($jsonLD);
+    }
+
     static public function fromString(string $jsonLD)
     {
         $type = Read::fromString($jsonLD)->getKey("@type")->fetch();

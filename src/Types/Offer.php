@@ -10,7 +10,7 @@ use Eightfold\Schema\Properties\Offer as OfferTrait;
 
 class Offer extends Thing
 {
-    use ThingTrait, IntangibleTrait, OfferTrait;
+    use IntangibleTrait, OfferTrait;
 
     public function properties(): array
     {

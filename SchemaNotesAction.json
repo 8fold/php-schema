@@ -1,0 +1,202 @@
+{
+	thing: {
+		description: "The most generic type of item.",
+		subTypes: [
+			{
+				action: {
+					description: "An action performed by a direct agent and indirect participants upon a direct object. Optionally happens at a location with the help of an inanimate instrument. The execution of the action may produce a result. Specific action sub-type documentation specifies the exact expectation of each argument/role.",
+					subTypes: [
+						achieveAction: {
+							description: "The act of accomplishing something via previous efforts. It is an instantaneous action rather than an ongoing process."
+							subTypes: [
+								loseAction: "The act of being defeated in a competitive activity.",
+								tieAction: "The act of reaching a draw in a competitive activity.",
+								winAction: "The act of achieving victory in a competitive activity.",
+							]
+						},
+						assessAction: {
+							description: "The act of forming one's opinion, reaction or sentiment.",
+							subTypes: [
+								chooseAction: {
+									description: "The act of expressing a preference from a set of options or a large or unbounded set of choices/options.",
+									subTypes: [
+										voteAction: "The act of expressing a preference from a fixed/finite/structured set of choices/options."
+									]
+								},
+								ignoreAction: "The act of intentionally disregarding the object. An agent ignores an object.",
+								reactAction: {
+									description: "The act of responding instinctively and emotionally to an object, expressing a sentiment.",
+									subTypes: [
+										disagreeAction: "The act of expressing a difference of opinion with the object. An agent disagrees to/about an object (a proposition, topic or theme) with participants.",
+										dislikeAction: "The act of expressing a negative sentiment about the object. An agent dislikes an object (a proposition, topic or theme) with participants.",
+										endorseAction: "An agent approves/certifies/likes/supports/sanction an object.",
+										likeAction: "The act of expressing a positive sentiment about the object. An agent likes an object (a proposition, topic or theme) with participants.",
+										wantAction: "The act of expressing a desire about the object. An agent wants an object."
+									]
+								},
+								reviewAction: "The act of producing a balanced opinion about the object for an audience. An agent reviews an object with participants resulting in a review.",
+							]
+						},
+						consumeAction: {
+							description: "The act of ingesting information/resources/food.",
+							subTypes: [
+								drinkAction: "The act of swallowing liquids.",
+								eatAction: "The act of swallowing solid objects.",
+								installAction: "The act of installing an application.",
+								listenAction: "The act of consuming audio content.",
+								readAction: "The act of consuming written content.",
+								useAction: {
+									description: "The act of applying an object to its intended purpose.",
+									subTypes: [
+										wearAction: "The act of dressing oneself in clothing."
+									]
+								},
+								viewAction: "The act of consuming static visual content.",
+								watchAction: "The act of consuming dynamic/moving visual content."
+							]
+						},
+						controlAction: {
+							description: "An agent controls a device or application.",
+							subTypes: [
+								activateAction: "The act of starting or activating a device or application (e.g. starting a timer or turning on a flashlight).",
+								deactivateAction: "The act of stopping or deactivating a device or application (e.g. stopping a timer or turning off a flashlight).",
+								resumeAction: "The act of resuming a device or application which was formerly paused (e.g. resume music playback or resume a timer).",
+								suspendAction: "The act of momentarily pausing a device or application (e.g. pause music playback or pause a timer)."
+							]
+						},
+						createAction: {
+							description: "The act of deliberately creating/producing/generating/building a result out of the agent.",
+							subTypes: [
+								cookAction: "The act of producing/preparing food.",
+								drawAction: "The act of producing a visual/graphical representation of an object, typically with a pen/pencil and paper as instruments.",
+								filmAction: "The act of capturing sound and moving images on film, video, or digitally.",
+								paintAction: "The act of producing a painting, typically with paint and canvas as instruments.",
+								photographAction: "The act of capturing still images of objects using a camera.",
+								writeAction: "The act of authoring written creative content."
+							]
+						},
+						findAction: {
+							description: "The act of finding an object.",
+							subTypes: [
+								checkAction: "An agent inspects, determines, investigates, inquires, or examines an object's accuracy, quality, condition, or state.",
+								discoverAction: "The act of discovering/finding an object.",
+								trackAction: "An agent tracks an object for updates."
+							]
+						},
+						interactAction: {
+							description: "The act of interacting with another person or organization.",
+							subTypes: [
+								befriendAction: "The act of forming a personal connection with someone (object) mutually/bidirectionally/symmetrically.",
+								communicateAction: {
+									description: "The act of conveying information to another person via a communication medium (instrument) such as speech, email, or telephone conversation.",
+									subTypes: [
+										askAction: "The act of posing a question / favor to someone.",
+										checkInAction: "The act of an agent communicating (service provider, social media, etc) their arrival by registering/confirming for a previously reserved service (e.g. flight check in) or at a place (e.g. hotel), possibly resulting in a result (boarding pass, etc).",
+										checkOutAction: "The act of an agent communicating (service provider, social media, etc) their departure of a previously reserved service (e.g. flight check in) or place (e.g. hotel).",
+										commentAction: "The act of generating a comment about a subject.",
+										informAction: {
+											description: "The act of notifying someone of information pertinent to them, with no expectation of a response.",
+											subTypes: [
+												confirmAction: "The act of notifying someone that a future event/action is going to happen as expected.",
+												rsvpAction: "The act of notifying an event organizer as to whether you expect to attend the event."
+											]
+										},
+										inviteAction: "The act of asking someone to attend an event. Reciprocal of RsvpAction.",
+										replyAction: "The act of responding to a question/message asked/sent by the object.",
+										shareAction: "The act of distributing content to people for their amusement or edification."
+									]
+								},
+								followAction: "The act of forming a personal connection with someone/something (object) unidirectionally/asymmetrically to get updates polled from.",
+								joinAction: "An agent joins an event/group with participants/friends at a location.",
+								leaveAction: "An agent leaves an event / group with participants/friends at a location.",
+								marryAction: "The act of marrying a person.",
+								registerAction: "The act of registering to be a user of a service, product or web page.",
+								subscribeAction: "The act of forming a personal connection with someone/something (object) unidirectionally/asymmetrically to get updates pushed to.",
+								unRegisterAction: "The act of un-registering from a service."
+							]
+						},
+						moveAction: {
+							description: "The act of an agent relocating to a place.",
+							subTypes: [
+								arriveAction: "The act of arriving at a place. An agent arrives at a destination from a fromLocation, optionally with participants.",
+								departAction: "The act of departing from a place. An agent departs from an fromLocation for a destination, optionally with participants.",
+								travelAction: "The act of traveling from an fromLocation to a destination by a specified mode of transport, optionally with participants."
+							]
+						},
+						organizeAction: {
+							description: "The act of manipulating/administering/supervising/controlling one or more objects.",
+							subTypes: [
+								allocateAction: {
+									description: "The act of organizing tasks/objects/events by associating resources to it.",
+									subTypes: [
+										acceptAction: "The act of committing to/adopting an object.",
+										assignAction: "The act of allocating an action/event/task to some destination (someone or something).",
+										authorizeAction: "The act of granting permission to an object.",
+										rejectAction: "The act of rejecting to/adopting an object."
+									]
+								},
+								applyAction: "The act of registering to an organization/service without the guarantee to receive it.",
+								bookmarkAction: "An agent bookmarks/flags/labels/tags/marks an object.",
+								planAction: {
+									description: "The act of planning the execution of an event/task/action/reservation/plan to a future date.",
+									subTypes: [
+										cancelAction: "The act of asserting that a future event/action is no longer going to happen.",
+										reserveAction: "Reserving a concrete object.",
+										scheduleAction: "Scheduling future actions, events, or tasks."
+									]
+								}
+							]
+						},
+						playAction: {
+							description: "The act of playing/exercising/training/performing for enjoyment, leisure, recreation, Competition or exercise.",
+							subTypes: [
+								exerciseAction: "The act of participating in exertive activity for the purposes of improving health and fitness.",
+								performAction: "The act of participating in performance arts."
+							]
+						},
+						searchAction: "The act of searching for an object.",
+						tradeAction: {
+							description: "The act of participating in an exchange of goods and services for monetary compensation. An agent trades an object, product or service with a participant in exchange for a one time or periodic payment.",
+							subTypes: [
+								buyAction: "The act of giving money to a seller in exchange for goods or services rendered. An agent buys an object, product, or service from a seller for a price. Reciprocal of SellAction.",
+								donateAction: "The act of providing goods, services, or money without compensation, often for philanthropic reasons.",
+								orderAction: "An agent orders an object/product/service to be delivered/sent.",
+								payAction: "An agent pays a price to a participant.",
+								preOrderAction: "An agent orders a (not yet released) object/product/service to be delivered/sent.",
+								quoteAction: "An agent quotes/estimates/appraises an object/product/service with a price at a location/store.",
+								rentAction: "The act of giving money in return for temporary use, but not ownership, of an object such as a vehicle or property. For example, an agent rents a property from a landlord in exchange for a periodic payment.",
+								sellAction: "The act of taking money from a buyer in exchange for goods or services rendered. An agent sells an object, product, or service to a buyer for a price. Reciprocal of BuyAction.",
+								tipAction: "The act of giving money voluntarily to a beneficiary in recognition of services rendered."
+							]
+						},
+						transferAction: {
+							description: "The act of transferring/moving (abstract or concrete) animate or inanimate objects from one place to another.",
+							subTypes: [
+								borrowAction: "The act of obtaining an object under an agreement to return it at a later date. Reciprocal of LendAction.",
+								downloadAction: "The act of downloading an object.",
+								giveAction: "The act of transferring ownership of an object to a destination. Reciprocal of TakeAction.",
+								lendAction: "The act of providing an object under an agreement that it will be returned at a later date. Reciprocal of BorrowAction.",
+								moneyTransfer: {
+									description: "The act of transferring money from one place to another place. This may occur electronically or physically.",
+									pending: true
+								},
+								receiveAction: "The act of physically/electronically taking delivery of an object thathas been transferred from an origin to a destination. Reciprocal of SendAction.",
+								returnAction: "The act of returning to the origin that which was previously received (concrete objects) or taken (ownership).",
+								sendAction: "The act of physically/electronically dispatching an object for transfer from an origin to a destination.",
+								takeAction: "The act of gaining ownership of an object from an origin. Reciprocal of GiveAction."
+							]
+						},
+						updateAction: {
+							description: "The act of managing by changing/editing the state of the object.",
+							subTypes: [
+								addAction: "The act of editing by adding an object to a collection.",
+								deleteAction: "The act of editing a recipient by removing one of its objects.",
+								replaceAction: "The act of editing a recipient by replacing an old object with a new object."
+							]
+						}
+					]
+				}
+			}
+		]
+	}
+}

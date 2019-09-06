@@ -12,7 +12,7 @@ trait Person
             'email',
             'sameAs',
             'contactPoint',
-            'offers'
+            'makesOffer'
         ];
     }
 }

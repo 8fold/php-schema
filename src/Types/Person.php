@@ -9,7 +9,7 @@ use Eightfold\Schema\Properties\Person as PersonTrait;
 
 class Person extends Thing
 {
-    use ThingTrait, PersonTrait;
+    use PersonTrait;
 
     public function properties(): array
     {

@@ -9,7 +9,7 @@ use Eightfold\Schema\Properties\Event as EventTrait;
 
 class Event extends Thing
 {
-    use ThingTrait, EventTrait;
+    use EventTrait;
 
     public function properties(): array
     {

@@ -6,6 +6,8 @@ trait CreativeWork
 {
     public function creativeWorkProperties(): array
     {
-        return [];
+        return [
+            'author'
+        ];
     }
 }

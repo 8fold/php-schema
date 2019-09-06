@@ -6,8 +6,12 @@ use Eightfold\Json\Read;
 
 use Eightfold\Schema\Schema;
 
+use Eightfold\Schema\Properties\Thing as ThingTrait;
+
 class Thing
 {
+    use ThingTrait;
+
     protected $jsonLD = '';
 
     private $properties = [];
@@ -44,25 +48,35 @@ class Thing
     {
         if (is_object($value)) {
             $json = json_encode($value);
-            $value = Schema::fromString($json);
+            $result = Schema::fromString($json);
+            return $result;
             // TODO: Consider caching solution
             // $this->properties[$name] = $value;
         }
         return $value;
     }
 
-    private function hasProperty(string $name)
+    public function hasProperty(string $name, bool $inJson = false)
     {
-        if (!in_array($name, $this->properties())) {
+        if (! in_array($name, $this->properties())) {
             $class = get_class($this);
             trigger_error("{$class} does not have property {$name}", E_USER_ERROR);
         }
+
+        if ($inJson) {
+            return Read::fromString($this->jsonLD)->hasKey($name);
+        }
+    }
+
+    public function type(): string
+    {
+        return Read::fromString($this->jsonLD)->getKey("@type")->fetch();
     }
 
     public function isType(string $type): bool
     {
-        $jsonType = Read::fromString($this->jsonLD)->getKey("@type")->fetch();
-        return ($jsonType === $type);
+
+        return ($this->type() === $type);
     }
 
 }

@@ -13,7 +13,7 @@ use Eightfold\Schema\Properties\CreativeWork as CreativeWorkTrait;
 
 class CreativeWork extends Thing
 {
-    use ThingTrait, CreativeWorkTrait;
+    use CreativeWorkTrait;
 
     public function properties(): array
     {

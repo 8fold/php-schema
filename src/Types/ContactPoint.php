@@ -9,7 +9,7 @@ use Eightfold\Schema\Properties\ContactPoint as ContactPointTrait;
 
 class ContactPoint extends Thing
 {
-    use ThingTrait, ContactPointTrait;
+    use ContactPointTrait;
 
     public function properties(): array
     {
