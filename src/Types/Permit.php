@@ -2,9 +2,9 @@
 
 namespace Eightfold\Schema\Types;
 
-use Eightfold\Schema\Types\Thing;
+use Eightfold\Schema\Types\Intangible;
 
-class Intangible extends Thing
+class Permit extends Intangible
 {
     static public function properties(): array
     {

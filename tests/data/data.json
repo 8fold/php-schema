@@ -1,35 +1,43 @@
 {
 	"@context": "http://schema.org",
-	"@type": "Person",
-	"givenName": "Josh",
-	"familyName": "Bruce",
-	"image": "",
+	"@type": "Thing",
+	"name": "something",
+	"subjectOf": {
+		"@type": "Event",
+		"subEvent": [
+			{
+				"@type": "Event",
+				"name": "Agile Midwest",
+				"startDate": "2018-08-29 17:29:09 ",
+				"endDate": "2018-08-29 17:29:09",
+				"url": "https://www.agilemidwest.org",
+				"subEvent": {
+					"@type": "Event",
+					"name": "Agile Midwest",
+					"startDate": "2017-10-11 14:37:23",
+					"endDate": "2017-10-12 14:37:23",
+					"url": "https://www.agilemidwest.org/"
+				}
+			},
+			{
+				"@type": "Event",
+				"name": "Agile Midwest",
+				"startDate": "2017-10-11 14:37:23",
+				"endDate": "2017-10-12 14:37:23",
+				"url": "https://www.agilemidwest.org/"
+			}
+		]
+	},
 	"contactPoint": {
 		"@type": "ContactPoint",
 		"contactType": "General inquiry",
 		"email": "josh@8fold.pro"
 	},
-	"offers": [
-		{
-			"@type": "Offer",
-			"category": "example"
-		}
-	],
 	"sameAs": [
-		{
-			"url": "https://twitter.com/amidknight"
-		},
-		{
-			"url": "https://linkedin.com/in/joshuabruce"
-		},
-		{
-			"url": "https://github.com/joshbruce"
-		},
-		{
-			"url": "https://medium.com/@amidknight"
-		},
-		{
-			"url": "https://leanpub.com/u/joshuabruce"
-		}
+		"https://twitter.com/amidknight",
+		"https://linkedin.com/in/joshuabruce",
+		"https://github.com/joshbruce",
+		"https://medium.com/@amidknight",
+		"https://leanpub.com/u/joshuabruce"
 	]
 }

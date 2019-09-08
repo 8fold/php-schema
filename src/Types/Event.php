@@ -4,15 +4,22 @@ namespace Eightfold\Schema\Types;
 
 use Eightfold\Schema\Types\Thing;
 
-use Eightfold\Schema\Properties\Thing as ThingTrait;
-use Eightfold\Schema\Properties\Event as EventTrait;
-
 class Event extends Thing
 {
-    use EventTrait;
-
-    public function properties(): array
+    static public function properties(): array
     {
-        return array_merge($this->thingProperties(), $this->eventProperties());
+        return array_merge(
+            parent::properties(),
+            [
+                'about',
+                'performer',
+                'audience',
+                'inLanguage',
+                'location',
+                'subEvent',
+                'startDate',
+                'endDate'
+            ]
+        );
     }
 }

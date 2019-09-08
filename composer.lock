@@ -4,15 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "dc2727c823fb2cad24820d635e04ac82",
+    "content-hash": "a6bb3b7b761047af1ba61632177da85e",
     "packages": [
         {
             "name": "8fold/php-json",
             "version": "0.0.1",
             "dist": {
                 "type": "path",
-                "url": "../php-json",
-                "reference": "cf0bd5d8e0115b3fdba495ed4d5be90c161fc3f3",
+                "url": "../laravel-amos/php-json",
+                "reference": "9cccd7f8dca00940a44e2bbce73aec49e430e0db",
                 "shasum": null
             },
             "require": {
@@ -57,45 +57,6 @@
                 }
             ],
             "description": "Handling JSON."
-        },
-        {
-            "name": "8fold/php-shoop",
-            "version": "0.0.1",
-            "dist": {
-                "type": "path",
-                "url": "../php-shoop",
-                "reference": "b8a5f7903a3156b2f1d2c8b5b2e9fb849e1f36e7",
-                "shasum": null
-            },
-            "require": {
-                "php": ">=7.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "^0.9.4",
-                "phpunit/php-code-coverage": "^6.0.7",
-                "phpunit/phpunit": "7.5.6"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Eightfold\\Shoop\\": "./src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Eightfold\\Shoop\\Tests\\": "./tests/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Josh Bruce",
-                    "email": "josh@8fold.pro"
-                }
-            ],
-            "description": "??"
         }
     ],
     "packages-dev": [
@@ -321,27 +282,23 @@
         },
         {
             "name": "phar-io/manifest",
-            "version": "dev-master",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phar-io/manifest.git",
-                "reference": "8c8bd1bb1a22f311b1b4886662b989d0d02aab77"
+                "reference": "7761fcacf03b4d4f16e7ccb606d4879ca431fcf4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phar-io/manifest/zipball/8c8bd1bb1a22f311b1b4886662b989d0d02aab77",
-                "reference": "8c8bd1bb1a22f311b1b4886662b989d0d02aab77",
+                "url": "https://api.github.com/repos/phar-io/manifest/zipball/7761fcacf03b4d4f16e7ccb606d4879ca431fcf4",
+                "reference": "7761fcacf03b4d4f16e7ccb606d4879ca431fcf4",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "ext-phar": "*",
-                "ext-xmlwriter": "*",
                 "phar-io/version": "^2.0",
-                "php": "^7.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^8.2"
+                "php": "^5.6 || ^7.0"
             },
             "type": "library",
             "extra": {
@@ -376,7 +333,7 @@
                 }
             ],
             "description": "Component for reading phar.io manifest information from a PHP Archive (PHAR)",
-            "time": "2019-07-09T12:18:04+00:00"
+            "time": "2018-07-08T19:23:20+00:00"
         },
         {
             "name": "phar-io/version",

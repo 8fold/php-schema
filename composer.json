@@ -12,7 +12,6 @@
     ],
     "require": {
         "php": ">=7.0",
-        "8fold/php-shoop": "0.0.1",
         "8fold/php-json": "0.0.1"
     },
     "require-dev": {
@@ -20,6 +19,13 @@
         "phpunit/phpunit": "7.5.6",
         "phpunit/php-code-coverage": "^6.0.7"
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../laravel-amos/php-json",
+            "name": "8fold/php-json"
+        }
+    ],
 	"minimum-stability": "dev",
     "autoload": {
         "psr-4": {
