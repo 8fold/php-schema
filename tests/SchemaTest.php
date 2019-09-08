@@ -122,4 +122,15 @@ class SchemaTest extends TestCase
         $path = __DIR__ ."/data/permit.json";
         $this->assertNotNull(Schema::fromPath($path));
     }
+
+    public function testCanChangeTypeUsingString()
+    {
+        $thing = Schema::fromString('{"@type":"Thing","name":"Bob"}');
+        $this->assertEquals("Eightfold\Schema\Types\Thing", get_class($thing), get_class($thing));
+        $this->assertEquals("Bob", $thing->name());
+
+        $thing->setName("Sara");
+        $this->assertEquals("Sara", $thing->name());
+
+    }
 }

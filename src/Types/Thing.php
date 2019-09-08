@@ -69,13 +69,29 @@ class Thing
 
     public function __call(string $name , array $arguments = [])
     {
-        if (strlen($this->jsonLD) > 0) {
+        if ($this->callIsSetter($name)) {
+
+            die("here");
+        }
+
+        if ($this->hasJson()) {
             $value = Read::fromString($this->jsonLD)->getKey($name)->fetch();
 
             return (count($arguments) == 0)
                 ? $this->processMembers($value)
                 : $this->processMembers($value, $arguments[0]);
         }
+    }
+
+    private function callIsSetter(string $name)
+    {
+        $len = strlen("set");
+        return (substr($name, 0, $len) === "set");
+    }
+
+    private function hasJson()
+    {
+        return strlen($this->jsonLD) > 0;
     }
 
     private function processMembers($value, int $index = null)
