@@ -10,9 +10,9 @@ class Thing
 {
     protected $jsonLD = '';
 
-    private $properties = [];
+    private $changes = [];
 
-    private $class = "";
+    private $className = "";
 
     static public function properties()
     {
@@ -29,6 +29,27 @@ class Thing
     {
         $this->jsonLD = $jsonLD;
     }
+
+    // Constraint: Don't want to write a bunch of code!
+
+
+    // check if property exists
+
+
+    // check if is array of strings, objects, or arrays
+    // check if is an object
+    // check has valid json
+    // set/update property values
+
+
+
+
+
+
+
+
+
+
 
     public function type(): string
     {
@@ -52,9 +73,9 @@ class Thing
         }
     }
 
-    public function asClass(string $class): Thing
+    public function asClass(string $classClass): Thing
     {
-        return new $class($this->jsonLD);
+        return new $className($this->jsonLD);
     }
 
     private function isArray($value): bool
@@ -69,10 +90,10 @@ class Thing
 
     public function __call(string $name , array $arguments = [])
     {
-        if ($this->callIsSetter($name)) {
+        // if ($this->callIsSetter($name)) {
 
-            die("here");
-        }
+        //     die("here");
+        // }
 
         if ($this->hasJson()) {
             $value = Read::fromString($this->jsonLD)->getKey($name)->fetch();
@@ -94,7 +115,7 @@ class Thing
         return strlen($this->jsonLD) > 0;
     }
 
-    private function processMembers($value, int $index = null)
+    private function processMembers($value)
     {
         if ($this->isArray($value)) {
             $result = [];
@@ -111,7 +132,7 @@ class Thing
 
         } elseif ($this->isObject($value)) {
             $json = json_encode($value);
-            $result = Schema::fromString($json, $this->class);
+            $result = Schema::fromString($json, $this->className);
 
         } else {
             $result = $value;
