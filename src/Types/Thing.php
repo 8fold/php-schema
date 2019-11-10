@@ -2,7 +2,8 @@
 
 namespace Eightfold\Schema\Types;
 
-use Eightfold\Json\Read;
+use Eightfold\Shoop\Shoop;
+use Eightfold\Shoop\Helpers\Type;
 
 use Eightfold\Schema\Schema;
 
@@ -48,12 +49,19 @@ class Thing
 
 
 
+    private function hasJson()
+    {
+        return strlen($this->jsonLD) > 0;
+    }
 
-
+    public function json()
+    {
+        return Shoop::json($this->jsonLD);
+    }
 
     public function type(): string
     {
-        return Read::fromString($this->jsonLD)->getKey("@type")->fetch();
+        return $this->json()->get("@type");
     }
 
     public function isType(string $type): bool
@@ -69,7 +77,7 @@ class Thing
         }
 
         if ($inJson) {
-            return Read::fromString($this->jsonLD)->hasKey($name);
+            return $this->json()->has($name);
         }
     }
 
@@ -78,29 +86,29 @@ class Thing
         return new $className($this->jsonLD);
     }
 
-    private function isArray($value): bool
+    // private function isArray($value): bool
+    // {
+    //     return (! is_null($value) && is_array($value));
+    // }
+
+    // private function isObject($value): bool
+    // {
+    //     return (! is_null($value) && is_object($value));
+    // }
+
+    public function __call(string $name, array $arguments = [])
     {
-        return (! is_null($value) && is_array($value));
-    }
-
-    private function isObject($value): bool
-    {
-        return (! is_null($value) && is_object($value));
-    }
-
-    public function __call(string $name , array $arguments = [])
-    {
-        // if ($this->callIsSetter($name)) {
-
-        //     die("here");
-        // }
-
         if ($this->hasJson()) {
-            $value = Read::fromString($this->jsonLD)->getKey($name)->fetch();
+            $value = $this->json()->get($name);
+            return $this->processMembers($value);
+        }
+    }
 
-            return (count($arguments) == 0)
-                ? $this->processMembers($value)
-                : $this->processMembers($value, $arguments[0]);
+    public function get($member)
+    {
+        if ($this->hasJson()) {
+            $value = $this->json()->get($member);
+            return $this->processMembers($value);
         }
     }
 
@@ -110,34 +118,22 @@ class Thing
         return (substr($name, 0, $len) === "set");
     }
 
-    private function hasJson()
-    {
-        return strlen($this->jsonLD) > 0;
-    }
-
     private function processMembers($value)
     {
-        if ($this->isArray($value)) {
-            $result = [];
-            for ($i = 0; $i < count($value); $i++) {
-                if (! is_null($index) && $index === $i) {
-                    $result = $this->processMembers($value[$index]);
-                    break;
-
-                } else {
-                    $result[] = $this->processMembers($value[$i]);
-
-                }
+        if (Type::isArray($value)) {
+            if (Type::isNotShooped($value)) {
+                $value = Shoop::array($value);
             }
 
-        } elseif ($this->isObject($value)) {
-            $json = json_encode($value);
-            $result = Schema::fromString($json, $this->className);
+            return $value->each(function($v) { return $this->processMembers($v); });
 
-        } else {
-            $result = $value;
+        } elseif (Type::isObject($value)) {
+            if (Type::isShooped($value)) {
+                $value = $value->unfold();
+            }
+            return Schema::fromObject($value, $this->className);
 
         }
-        return $result;
+        return $value;
     }
 }

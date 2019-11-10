@@ -2,7 +2,8 @@
 
 namespace Eightfold\Schema;
 
-use Eightfold\Json\Read;
+use Eightfold\Shoop\Shoop;
+// use Eightfold\Json\Read;
 
 class Schema
 {
@@ -20,7 +21,10 @@ class Schema
 
     static public function fromString(string $jsonLD, string $class = "")
     {
-        $type = Read::fromString($jsonLD)->getKey("@type")->fetch();
+        $type = (Shoop::json($jsonLD)->has("@type")->unfold())
+            ? Shoop::json($jsonLD)->get("@type")
+            : "";
+
         if (strlen($class) === 0) {
             $class = 'Eightfold\Schema\Types\\'. $type;
         }
