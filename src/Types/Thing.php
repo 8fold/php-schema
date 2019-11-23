@@ -69,16 +69,27 @@ class Thing
         return ($this->type() === $type);
     }
 
-    public function hasProperty(string $name, bool $inJson = false)
+    public function acceptsProperty(string $name): bool
     {
-        if (! in_array($name, static::properties())) {
-            $class = get_class($this);
-            trigger_error("{$class} does not have property {$name}", E_USER_ERROR);
-        }
+        return in_array($name, static::properties());
+    }
 
-        if ($inJson) {
-            return $this->json()->has($name);
-        }
+    public function hasProperty(string $name)
+    {
+        return $this->json()->hasMember($name);
+
+        // if ($inJson) {
+
+        // }
+        // return Shoop::bool();
+        // if (! in_array($name, static::properties())) {
+        //     $class = get_class($this);
+        //     trigger_error("{$class} does not have property {$name}", E_USER_ERROR);
+        // }
+
+        // if ($inJson) {
+        //     return $this->json()->has($name);
+        // }
     }
 
     public function asClass(string $classClass): Thing
@@ -99,6 +110,7 @@ class Thing
     public function __call(string $name, array $arguments = [])
     {
         if ($this->hasJson()) {
+            return $this->get($name);
             $value = $this->json()->get($name);
             return $this->processMembers($value);
         }
