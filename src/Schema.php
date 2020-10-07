@@ -21,8 +21,11 @@ class Schema
 
     static public function fromString(string $jsonLD, string $class = "")
     {
-        $type = (Shoop::json($jsonLD)->has("@type")->unfold())
-            ? Shoop::json($jsonLD)->get("@type")
+        die(var_dump(
+            Shoop::this($jsonLD)->hasAt("@type")
+        ));
+        $type = (Shoop::this($jsonLD)->asTuple()->has("@type")->unfold())
+            ? Shoop::this($jsonLD)->asTuple()->at("@type")
             : "";
 
         if (strlen($class) === 0) {
