@@ -12,6 +12,7 @@ class ThingTest extends TestCase
     {
         return __DIR__ ."/data/data.json";
     }
+
     private function getThing()
     {
         $thing = Schema::fromPath($this->getPath());

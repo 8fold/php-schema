@@ -4,7 +4,9 @@
 
 The first library being tested is the [Schema.org](https://schema.org/) vocabulary for adding metadata to the web. This metadata not only helps with search engine optimization, but may also help improve the accessibility and experience of your site for those using assistive technologies. The vocabulary includes dozens of standardized objects, fields, and relationships.
 
-> Note: If you are looking for a way to objectify JSON-LD strings, we can point you to [Aaron Bullard's PhpSchema](https://github.com/aaronbullard/php-schema). It is self-validating and appears to be designed to convert JSON-LD string into objects. 8fold Schema is designed to create objects that can output JSON-LD from the contents of a path, a provided `stdClass` instance, or JSON-LD string.
+> *Note:* If you are looking for a way to objectify JSON-LD strings, we can point you to [Aaron Bullard's PhpSchema](https://github.com/aaronbullard/php-schema). It is self-validating and appears to be designed to convert JSON-LD string into objects. 8fold Schema is designed to create objects that can output JSON-LD from the contents of a path, a provided `stdClass` instance, or JSON-LD string.
+
+> **Warning:** As of this build we are following the design of Schema.org pretty strictly. Schema.org relies a lot on inheritance (pretty typical when it comes to taxonomies); therefore, we are deviating from our normal principles on inheritance until something better emerges.
 
 ## Installation
 
