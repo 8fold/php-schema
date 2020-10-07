@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 use Eightfold\Schema\Schema;
 use Eightfold\Schema\Types\Thing;
-use Eightfold\Schema\Types\Permit;
+use Eightfold\Schema\Interfaces\Typed;
 
 class SchemaTest extends TestCase
 {
@@ -22,6 +22,39 @@ class SchemaTest extends TestCase
     }
 
 // -> Test Initializer
+    public function testSchemaIsShoopLike()
+    {
+        $actual = new Thing();
+        $this->assertTrue(is_a($actual, Thing::class));
+        $this->assertTrue(is_a($actual, Typed::class));
+
+        $expected = "Thing";
+        $this->assertSame($expected, $actual->type()->unfold());
+
+        $expected = '{"@context":"http:\/\/schema.org","@type":"Thing"}';
+        $actual = Thing::fold();
+        $this->assertSame($expected, $actual->unfold());
+
+        $expected = '{"@context":"http:\/\/schema.org","@type":"Thing"}';
+        $actual = Thing::fold()->plus("hello", "acceptsReservations");
+        $this->assertSame($expected, $actual->unfold());
+
+        $expected = "http://schema.org";
+        $actual = $actual->get("@context");
+        $this->assertSame($expected, $actual->unfold());
+
+
+        // Re-engineer to feel more like Shoop.
+        // Thing, which is the base class might actually fair well by extending
+        // ESJson
+        //
+        // Schema::this() - accepts an instance of Typable (or JsonLD w/ @type member)
+        //      public function type() - return strig from @type member
+        //
+        // Interface Contexualized
+        //      public function context() - return string from @context member
+        //
+    }
     public function testCanInitializeFromPath()
     {
         $this->assertNotNull($this->getThing());

@@ -2,33 +2,67 @@
 
 namespace Eightfold\Schema\Types;
 
-use Eightfold\Shoop\Shoop;
-use Eightfold\Shoop\Helpers\Type;
+use Eightfold\ShoopExtras\{
+    Shoop,
+    ESUrl
+};
 
-use Eightfold\Schema\Schema;
+use Eightfold\Shoop\{
+    Helpers\Type,
+    ESDictionary,
+    ESJson,
+    ESString
+};
 
-class Thing
+use Eightfold\Schema\{
+    Interfaces\Typed,
+    Traits\TypedImp,
+    Schema
+};
+
+class Thing implements Typed
 {
-    protected $jsonLD = '';
+    use TypedImp;
 
     private $changes = [];
 
     private $className = "";
 
+    /**
+     * Valid properties of type
+     *
+     * @return ESArry Array of acceptable properties
+     */
     static public function properties()
     {
-        return [
-            'description',
-            'identifier',
-            'image',
-            'name',
-            'url'
-        ];
+        return Shoop::dictionary([])->plus(
+            ESString::class, "@context",
+            ESString::class, "@type",
+            ESString::class, "description",
+            ESUrl::class, "identifier", // or PropertyValue
+            USUrl::class, "image", // or ImageObject
+            ESString::class, "name",
+            ESUrl::class, "url"
+        );
     }
 
-    public function __construct(string $jsonLD)
+    static public function fold($jsonLD = "{}", ...$args)
     {
-        $this->jsonLD = $jsonLD;
+        return new static($jsonLD);
+    }
+
+    public function __construct(string $jsonLD = "{}")
+    {
+        $this->value = Shoop::json($jsonLD);
+        $this->value = $this->json()->plus(
+            "http://schema.org", "@context",
+            $this->type()->unfold(), "@type"
+        );
+    }
+
+    public function unfold()
+    {
+        return $this->json()->unfold();
     }
 
     // Constraint: Don't want to write a bunch of code!
@@ -49,103 +83,98 @@ class Thing
 
 
 
-    private function hasJson()
-    {
-        return strlen($this->jsonLD) > 0;
-    }
-
-    public function json()
-    {
-        return Shoop::json($this->jsonLD);
-    }
-
-    public function type(): string
-    {
-        return $this->json()->get("@type");
-    }
-
-    public function isType(string $type): bool
-    {
-        return ($this->type() === $type);
-    }
-
-    public function acceptsProperty(string $name): bool
-    {
-        return in_array($name, static::properties());
-    }
-
-    public function hasProperty(string $name)
-    {
-        return $this->json()->hasMember($name);
-
-        // if ($inJson) {
-
-        // }
-        // return Shoop::bool();
-        // if (! in_array($name, static::properties())) {
-        //     $class = get_class($this);
-        //     trigger_error("{$class} does not have property {$name}", E_USER_ERROR);
-        // }
-
-        // if ($inJson) {
-        //     return $this->json()->has($name);
-        // }
-    }
-
-    public function asClass(string $classClass): Thing
-    {
-        return new $className($this->jsonLD);
-    }
-
-    // private function isArray($value): bool
+    // private function hasJson()
     // {
-    //     return (! is_null($value) && is_array($value));
+    //     return strlen($this->jsonLD) > 0;
     // }
 
-    // private function isObject($value): bool
+    // public function json()
     // {
-    //     return (! is_null($value) && is_object($value));
+    //     return Shoop::json($this->jsonLD);
     // }
 
-    public function __call(string $name, array $arguments = [])
-    {
-        if ($this->hasJson()) {
-            return $this->get($name);
-            $value = $this->json()->get($name);
-            return $this->processMembers($value);
-        }
-    }
+    // public function type(): string
+    // {
+    //     return $this->json()->get("@type");
+    // }
 
-    public function get($member)
-    {
-        if ($this->hasJson()) {
-            $value = $this->json()->get($member);
-            return $this->processMembers($value);
-        }
-    }
+    // public function acceptsProperty(string $name): bool
+    // {
+    //     return in_array($name, static::properties());
+    // }
 
-    private function callIsSetter(string $name)
-    {
-        $len = strlen("set");
-        return (substr($name, 0, $len) === "set");
-    }
+    // public function hasProperty(string $name)
+    // {
+    //     return $this->json()->hasMember($name);
 
-    private function processMembers($value)
-    {
-        if (Type::isArray($value)) {
-            if (Type::isNotShooped($value)) {
-                $value = Shoop::array($value);
-            }
+    //     // if ($inJson) {
 
-            return $value->each(function($v) { return $this->processMembers($v); });
+    //     // }
+    //     // return Shoop::bool();
+    //     // if (! in_array($name, static::properties())) {
+    //     //     $class = get_class($this);
+    //     //     trigger_error("{$class} does not have property {$name}", E_USER_ERROR);
+    //     // }
 
-        } elseif (Type::isObject($value)) {
-            if (Type::isShooped($value)) {
-                $value = $value->unfold();
-            }
-            return Schema::fromObject($value, $this->className);
+    //     // if ($inJson) {
+    //     //     return $this->json()->has($name);
+    //     // }
+    // }
 
-        }
-        return $value;
-    }
+    // // public function asClass(string $classClass): Thing
+    // // {
+    // //     return new $className($this->jsonLD);
+    // // }
+
+    // // private function isArray($value): bool
+    // // {
+    // //     return (! is_null($value) && is_array($value));
+    // // }
+
+    // // private function isObject($value): bool
+    // // {
+    // //     return (! is_null($value) && is_object($value));
+    // // }
+
+    // public function __call(string $name, array $arguments = [])
+    // {
+    //     if ($this->hasJson()) {
+    //         return $this->get($name);
+    //         $value = $this->json()->get($name);
+    //         return $this->processMembers($value);
+    //     }
+    // }
+
+    // public function get($member)
+    // {
+    //     if ($this->hasJson()) {
+    //         $value = $this->json()->get($member);
+    //         return $this->processMembers($value);
+    //     }
+    // }
+
+    // private function callIsSetter(string $name)
+    // {
+    //     $len = strlen("set");
+    //     return (substr($name, 0, $len) === "set");
+    // }
+
+    // private function processMembers($value)
+    // {
+    //     if (Type::isArray($value)) {
+    //         if (Type::isNotShooped($value)) {
+    //             $value = Shoop::array($value);
+    //         }
+
+    //         return $value->each(function($v) { return $this->processMembers($v); });
+
+    //     } elseif (Type::isObject($value)) {
+    //         if (Type::isShooped($value)) {
+    //             $value = $value->unfold();
+    //         }
+    //         return Schema::fromObject($value, $this->className);
+
+    //     }
+    //     return $value;
+    // }
 }
