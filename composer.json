@@ -1,7 +1,6 @@
 {
     "name": "8fold/php-schema",
     "description": "8fold Schema is designed to make interacting with structured data for the web easier.",
-    "version": "0.0.1",
     "type": "library",
     "license": "MIT",
     "authors": [
